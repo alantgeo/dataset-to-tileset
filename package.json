@@ -1,0 +1,28 @@
+{
+  "name": "dataset-to-tileset",
+  "version": "1.0.0",
+  "description": "Convert a Mapbox Dataset into a Mapbox Tileset while applying a bunch of helper operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mapbox-dataset-to-tileset": "./index.js"
+  },
+  "repository": "alantgeo/dataset-to-tileset",
+  "author": "Andrew Harvey <andrew@alantgeo.com.au>",
+  "license": "ISC",
+  "dependencies": {
+    "@turf/area": "^4.3.0",
+    "@turf/bearing": "^4.3.0",
+    "@turf/bezier": "^4.3.0",
+    "@turf/helpers": "^4.3.0",
+    "@turf/meta": "^4.3.0",
+    "mapbox": "^1.0.0-beta7",
+    "mapbox-upload": "^4.2.4",
+    "minimist": "^1.2.0",
+    "mktemp": "^0.4.0",
+    "polylabel": "^1.0.2",
+    "randomstring": "^1.1.5"
+  }
+}
