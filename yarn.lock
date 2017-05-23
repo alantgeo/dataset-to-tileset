@@ -8,6 +8,15 @@
   dependencies:
     wgs84 "0.0.0"
 
+"@turf/along@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/along/-/along-4.3.0.tgz#b19a371142cf8feb651ffa87345a89c24fd66a0d"
+  dependencies:
+    "@turf/bearing" "^4.3.0"
+    "@turf/destination" "^4.3.0"
+    "@turf/distance" "^4.3.0"
+    "@turf/helpers" "^4.3.0"
+
 "@turf/area@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/area/-/area-4.3.0.tgz#7f6b1bb9a45c2c553ead7c507d1ccb98c4907e4f"
@@ -27,6 +36,28 @@
   dependencies:
     "@turf/helpers" "^4.3.0"
 
+"@turf/destination@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/destination/-/destination-4.3.0.tgz#46ec6bdf7e41728a3a2f4dcb50d0c506a5b954de"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/invariant" "^4.3.0"
+
+"@turf/distance@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/distance/-/distance-4.3.0.tgz#b533ba75936fea897ee1987824714b803df9061c"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/invariant" "^4.3.0"
+
+"@turf/flatten@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/flatten/-/flatten-4.3.0.tgz#d5ad0e1dc65955b19965416dac9783abe6a1918c"
+  dependencies:
+    "@turf/helpers" "^4.3.0"
+    "@turf/invariant" "^4.3.0"
+    "@turf/meta" "^4.3.0"
+
 "@turf/helpers@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-4.3.0.tgz#7b2f733aa0eb3ea1f07d467ac02ede00cc6cde0d"
@@ -34,6 +65,15 @@
 "@turf/invariant@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-4.3.0.tgz#5bd1ce6ae51b1229dc0dc7d09d973fabae49af89"
+
+"@turf/line-distance@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@turf/line-distance/-/line-distance-4.3.0.tgz#9a958a9af72cd2e3eaf80ce4f95af8a4daf5abcd"
+  dependencies:
+    "@turf/distance" "^4.3.0"
+    "@turf/flatten" "^4.3.0"
+    "@turf/helpers" "^4.3.0"
+    "@turf/meta" "^4.3.0"
 
 "@turf/meta@^4.3.0":
   version "4.3.0"

@@ -3,6 +3,7 @@
 Command line tool to convert a Mapbox Dataset into a Mapbox Tileset while applying a bunch of helper operations including:
 * Smooth lines using a bezier spline
 * Add point nodes to polygons for labels
+* Add point nodes to lines for labels
 * Add arrowhead points (where feature property is `_arrow = start|end|both`)
 
 ## Install

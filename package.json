@@ -13,10 +13,12 @@
   "author": "Andrew Harvey <andrew@alantgeo.com.au>",
   "license": "ISC",
   "dependencies": {
+    "@turf/along": "^4.3.0",
     "@turf/area": "^4.3.0",
     "@turf/bearing": "^4.3.0",
     "@turf/bezier": "^4.3.0",
     "@turf/helpers": "^4.3.0",
+    "@turf/line-distance": "^4.3.0",
     "@turf/meta": "^4.3.0",
     "mapbox": "^1.0.0-beta7",
     "mapbox-upload": "^4.2.4",

@@ -16,7 +16,9 @@ const turf = {
     area: require('@turf/area'),
     point: require('@turf/helpers').point,
     bearing: require('@turf/bearing'),
-    featureCollection: require('@turf/helpers').featureCollection
+    featureCollection: require('@turf/helpers').featureCollection,
+    along: require('@turf/along'),
+    lineDistance: require('@turf/line-distance')
 };
 
 var username = getUser(process.env.MAPBOX_ACCESS_TOKEN);
@@ -37,7 +39,7 @@ if (!destTileset) {
     });
 }
 
-function labelFeature(feature) {
+function labelPolygonFeature(feature) {
     // find pole of inaccessibility
     var labelPoint = polylabel(feature.geometry.coordinates, feature.properties.precision || 0.001);
 
@@ -140,9 +142,24 @@ function arrowHead(feature) {
     return arrows;
 }
 
+function labelLineStringFeature(line) {
+    var length = turf.lineDistance(line);
+    // midpoint along the line
+    var point = turf.along(line, length / 2);
+    point.properties = Object.assign(
+            {
+                _length: length,
+                _label: true
+            },
+            line.properties
+        );
+    return point;
+}
+
 function processFeatures() {
     var smoothedLines = 0;
-    var labels = 0;
+    var lineLabels = 0;
+    var polygonLabels = 0;
     var arrowHeads = 0;
 
     inputFeatures.forEach(function (feature) {
@@ -151,8 +168,8 @@ function processFeatures() {
             return;
         }
         if (feature.geometry.type === 'Polygon') {
-            outputFeatures.push(labelFeature(feature));
-            smoothedLines++;
+            outputFeatures.push(labelPolygonFeature(feature));
+            polygonLabels++;
             outputFeatures.push(feature);
         } else if (feature.geometry.type === 'LineString') {
             var resolution = feature.properties.resolution;
@@ -161,6 +178,9 @@ function processFeatures() {
             var curve = turf.bezier(feature, resolution || 10000, sharpness || 0.85);
             outputFeatures.push(curve);
             smoothedLines++;
+
+            outputFeatures.push(labelLineStringFeature(curve));
+            lineLabels++;
 
             if ('_arrow' in feature.properties) {
                 outputFeatures.push(...arrowHead(curve));
@@ -172,7 +192,8 @@ function processFeatures() {
         }
     });
 
-    console.log(labels + ' labels created');
+    console.log(polygonLabels + ' polygon labels created');
+    console.log(lineLabels + ' line labels created');
     console.log(smoothedLines + ' lines smoothed');
     console.log(arrowHeads + ' arrow heads created');
 
