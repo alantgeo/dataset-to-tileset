@@ -103,7 +103,7 @@ function arrowHeadStart(feature) {
                 _arrow: 'start',
                 _rotation: turf.bearing.apply(null, (feature.geometry.coordinates.slice(0, 2).map((coord) => {
                     return turf.point(coord);
-                })))
+                }).reverse()))
             },
             feature.properties
         )
