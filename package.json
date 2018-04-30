@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "mapbox-dataset-to-tileset": "./index.js"
+    "dataset-to-tileset": "./index.js"
   },
   "repository": "alantgeo/dataset-to-tileset",
   "author": "Andrew Harvey <andrew@alantgeo.com.au>",
