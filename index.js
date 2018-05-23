@@ -8,6 +8,7 @@ var randomstring = require('randomstring');
 var getUser = require('mapbox/lib/get_user');
 var fs = require('fs');
 var mktemp = require('mktemp');
+var argv = require('minimist')(process.argv.slice(2));
 
 const polylabel = require('polylabel');
 const turf = {
@@ -27,7 +28,7 @@ var sourceDataset = argv._[0];
 var destTileset = argv._[1];
 
 if (!sourceDataset) {
-    console.log('Usage: mapbox-dataset-to-tileset DATASET_ID [TILESET_ID]');
+    console.log('Usage: mapbox-dataset-to-tileset [--intermediate=tileset.geojson] DATASET_ID [TILESET_ID]');
     process.exit();
 }
 
@@ -199,7 +200,7 @@ function processFeatures() {
 
     var geojson = turf.featureCollection(outputFeatures);
 
-    var path = mktemp.createFileSync('XXXXXXX.geojson');
+    var path = argv.intermediate ? argv.intermediate : mktemp.createFileSync('XXXXXXX.geojson');
     fs.writeFileSync(path, JSON.stringify(geojson));
 
     var uploadProgress = upload({
@@ -208,17 +209,20 @@ function processFeatures() {
         accesstoken: process.env.MAPBOX_ACCESS_TOKEN,
         mapid: destTileset,
         name: datasetName
-
     });
 
     uploadProgress.on('error', function (err) {
         if (err) {
             console.error(err);
         }
-        fs.unlinkSync(path);
+        if (!argv.intermediate) {
+            fs.unlinkSync(path);
+        }
     });
     uploadProgress.once('finished', function () {
-        fs.unlinkSync(path);
+        if (!argv.intermediate) {
+            fs.unlinkSync(path);
+        }
         console.log('https://www.mapbox.com/studio/tilesets/' + destTileset + '/');
     });
 }
