@@ -180,8 +180,14 @@ function processFeatures() {
             outputFeatures.push(curve);
             smoothedLines++;
 
-            outputFeatures.push(labelLineStringFeature(curve));
-            lineLabels++;
+            if (feature.properties['_bezier'] == 'clone') {
+                outputFeatures.push(feature);
+            }
+
+            if (feature.properties['_label']) {
+                outputFeatures.push(labelLineStringFeature(curve));
+                lineLabels++;
+            }
 
             if ('_arrow' in feature.properties) {
                 outputFeatures.push(...arrowHead(curve));
