@@ -1,6 +1,6 @@
 {
   "name": "dataset-to-tileset",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert a Mapbox Dataset into a Mapbox Tileset while applying a bunch of helper operations",
   "main": "index.js",
   "scripts": {
